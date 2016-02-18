@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<title>Arduino Yun &bull; DEMO</title>
+	
+	<script src="../jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+		$(document).ready(function() {		
+			$.ajaxSetup({
+				user:"root",
+				password:"doghunter",
+				crossDomain : true,
+				xhrFields: { withCredentials: true } 
+			});
+
+		});
+		*/
+		/*
+		Javascript function to send REST commands to your Arduino Board.
+		*/
+	   	function sendVal(pin, value) {		  	
+		    //bind the slider value to the URL
+		    var host="http://linino.local/arduino/";
+		    if(window.location.href.indexOf("192.168.240.1")!=-1)
+		    	var host="/arduino/";
+		    	
+		    var url="";
+		    var valNum=0;
+		    if(pin=="BASE"){
+		      //$.get(host + 'base/value:' + value, function(data){});
+			url=host + 'base/value:' + value;
+		    }
+		    else if(pin=="SHOULDER"){
+		      //$.get(host + 'shoulder/value:' + value, function(){});		
+			url=host + 'shoulder/value:' + value;
+		    }
+		    else if(pin=="ELBOW"){
+		      //$.get(host + 'elbow/value:' + value, function(){});
+			url=host + 'elbow/value:' + value;
+		    }
+		    else if(pin=="WRISTR"){
+		      //$.get(host + 'wristr/value:' + value, function(){});
+			url=host + 'elbow/value:' + value;
+		    }
+		    else if(pin=="WRISTV"){
+		      //$.get(host + 'wristv/value:' + value, function(){});
+			url=host + 'wristv/value:' + value;
+		    }
+		    else if(pin=="TONGUE"){
+		      //$.get(host + 'tongue/value:' + value, function(){});
+			url=host + 'tongue/value:' + value;
+		    }
+
+			 $.ajax({
+
+				url: url,
+				type: 'GET',
+				callback: '?',
+				success: function() { alert("Success"); },
+				error: function() { alert('Failed!'); },
+				crossDomain : true,
+				xhrFields: { withCredentials: true } 
+
+			    });
+	  	}
+
+	  	function updateVal(pin, me) {
+			value = me.value;			
+			//send value
+			sendVal(pin, value);			
+		}		
+		function setHeader(xhr) {
+		  xhr.setRequestHeader('Authorization', token);
+		}	
+
+	</script>	
+
+<link rel="stylesheet" type="text/css" href="../braccio.css">	
+<link href="../favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+	    <img src="../marchio_arduino.jpg">
+	    <h2>Arduino Braccio and Arduino YUN via the 'CIAO' Library</h2>	
+	    Move the slider above to move the Braccio's servo motor
+	    <form 
+	       oninput="
+	       amount1.value=rangeInput1.value;
+	       amount2.value=rangeInput2.value;
+	       amount3.value=rangeInput3.value;
+	       amount4.value=rangeInput4.value;
+	       amount5.value=rangeInput5.value;
+	       amount6.value=rangeInput6.value"
+	       >
+	    <table>
+		<tr class=motor>		
+		<td ><span class="motor">BASE</span></td>
+		<td class=slider><input name=rangeInput1 type="range" min="0" max="180" value=0 onchange="updateVal('BASE', this);"></td>
+		<td class=value><output name="amount1" for="BASE">0</output></td>
+		</tr>
+		
+		<tr class=motor>
+		<td><span class="motor">SHOULDER</span>	</td>		
+		<td><input name=rangeInput2 type="range" min="0" max="180" value=45 onchange="updateVal('SHOULDER', this);"></td>
+		<td><output type=text size=2 name="amount2">45</output></td>
+		</tr>		
+
+		<tr class=motor>
+		<td><span class="motor">ELBOW</span></td>			
+		<td><input name=rangeInput3 type="range" min="0" max="180" value=180 onchange="updateVal('ELBOW', this);"></td>
+		<td><output type=text size=2 name="amount3" >180</output></td>
+		</tr>		
+
+		<tr class=motor>
+		<td><span class="motor">WRIST VERT.</span></td>			
+		<td><input name=rangeInput5 type="range" min="0" max="180" value=180 onchange="updateVal('WRISTV', this);"></td>
+		<td><output type=text size=2 name="amount5" >180</output></td>
+		</tr>				
+
+		<tr class=motor>
+		<td><span class="motor">WRIST ROT.</span></td>			
+		<td><input name=rangeInput4 type="range" min="0" max="170" value=90 onchange="updateVal('WRISTR', this);"></td>
+		<td><output type=text size=2 name="amount4" >90</output></td>
+		</tr>	
+			
+		<tr class=motor>
+		<td><span class="motor">TONGUE</span></td>			
+		<td><input name=rangeInput6 type="range" min="10" max="67" value=10 onchange="updateVal('TONGUE', this);">
+		<td><output type=text size=2 name="amount6" >10</output></td>
+		</tr>
+	    </table>		
+</body>

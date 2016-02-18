@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<title>Arduino Yun &bull; DEMO</title>
+	
+	<script type="text/javascript" src="zepto.min.js"></script>
+
+	<script type="text/javascript">
+		readDigitals();
+		refreshAnalogs();
+		setCookie("pending", 0);
+		//init();
+		sendVal("MOTORE", "STOP");
+		
+		//pin mode set in the sketch
+		function init(){
+		  setCookie("pending", 1);
+		  $.get('/arduino/mode/8/output', function(){
+		    setCookie("pending", 0);
+		  });
+		  setCookie("pending", 1);
+		  $.get('/arduino/mode/12/output', function(){
+		    setCookie("pending", 0);
+		  });		
+		}
+		
+		function setCookie(cname, cvalue) {		
+		  document.cookie = cname + "=" + cvalue;
+		}
+		function getCookie(cname) {
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1);
+				if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+		
+		
+
+	   	function sendVal(pin, value) {		  	
+		    //bind the slider value to the URL
+		    //alert(pin); alert(value);
+		    var host="http://192.168.1.119/arduino/";
+		    var valNum=0;
+		    if(pin=="BASE"){
+		      setCookie("pending", 1);
+		      $.get(host + 'base/value:' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+		    else if(pin=="SHOULDER"){
+		      setCookie("pending", 1);
+		      $.get('/arduino/analog/d5/' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+		    else if(pin=="ELBOW"){
+		      setCookie("pending", 1);
+		      $.get('/arduino/analog/d5/' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+		    else if(pin=="WRISTR"){
+		      setCookie("pending", 1);
+		      $.get('/arduino/analog/d5/' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+		    else if(pin=="WRISTV"){
+		      setCookie("pending", 1);
+		      $.get('/arduino/analog/d5/' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+		    else if(pin=="TONGUE"){
+		      setCookie("pending", 1);
+		      $.get('/arduino/analog/d5/' + value, function(){
+			setCookie("pending", 0);
+			}
+		      );
+		    }
+	  	}
+
+	  	function updateVal(pin, me) {
+			value = me.value;			
+			//send value
+			sendVal(pin, value);			
+		}	
+
+	</script>	
+
+<link rel="stylesheet" type="text/css" href="braccio.css">	
+<link href="favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+</head>
+
+<body>
+	    <img src="marchio_arduino.jpg">
+	    <h2>Arduino Braccio Slider with Aruino YUN</h2>	
+	    Move the slider above to move the Braccio's servo motor
+	    <form 
+	       oninput="
+	       amount1.value=rangeInput1.value;
+	       amount2.value=rangeInput2.value;
+	       amount3.value=rangeInput3.value;
+	       amount4.value=rangeInput4.value;
+	       amount5.value=rangeInput5.value;
+	       amount6.value=rangeInput6.value"
+	       >
+	    <table><tr class=motor>
+		
+		<td ><span class="motor">BASE</span></td>
+		<td class=slider>
+		  <input name=rangeInput1 type="range" min="0" max="180" value=0 onchange="updateVal('BASE', this);">
+		</td>
+		<td class=value>		  
+		  <output name="amount1" for="BASE">0</output>
+		</td>
+		
+		<tr class=motor>
+		<td><span class="motor">SHOULDER</span>	</td>		
+		<td><input name=rangeInput2 type="range" min="0" max="180" value=0 onchange="updateVal('SHOULDER', this);"></td>
+		<td>		   
+		   <output type=text size=2 name="amount2">0	</output>
+		</td>
+		
+		<tr class=motor>
+		<td><span class="motor">ELBOW</span></td>			
+		<td><input name=rangeInput3 type="range" min="0" max="180" value=0 onchange="updateVal('ELBOW', this);"></td>
+		<td><output type=text size=2 name="amount3" >0</output></td>
+		
+		<tr class=motor>
+		<td><span class="motor">WRIST ROT.</span></td>			
+		<td><input name=rangeInput4 type="range" min="0" max="180" value=0 onchange="updateVal('WRISTR', this);"></td>
+		<td><output type=text size=2 name="amount4" >0</output></td>
+		
+		<tr class=motor>
+		<td><span class="motor">WRIST VERT.</span></td>			
+		<td><input name=rangeInput5 type="range" min="0" max="180" value=0 onchange="updateVal('WRISTV', this);"></td>
+		<td><output type=text size=2 name="amount5" >0</output></td>
+		
+		<tr class=motor>
+		<td><span class="motor">TONGUE</span></td>			
+		<td><input name=rangeInput6 type="range" min="10" max="67" value=10 onchange="updateVal('TONGUE', this);">
+		<td><output type=text size=2 name="amount6" >0</output></td>
+		
+	    </table>
+		
+</body>

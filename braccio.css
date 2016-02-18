@@ -1,0 +1,127 @@
+body {
+	text-align: center;
+	margin: 5px 10px;
+	color:#00B0B3;
+	font-family:'TypSansMono Medium';
+}	
+
+img{
+  width:150px;
+}
+
+input[type="range"]{
+	outline: none;
+	-webkit-appearance:none; 
+	-moz-apperance:none; 
+	width:90%;
+	height: 20px;
+	-webkit-border-radius:10px; 
+	-moz-border-radius:10px; 
+	-ms-border-radius:10px; 
+	-o-border-radius:10px;
+	background-color: #CCC;
+
+}
+
+button{
+	outline: none;
+	margin-top:10px;
+	-webkit-appearance:none; 
+	-moz-apperance:none; 
+	height: 60px;
+	width:250px;
+	-webkit-border-radius:10px; 
+	-moz-border-radius:10px; 
+	-ms-border-radius:10px; 
+	-o-border-radius:10px;
+	background-color: #CCC;
+	color:#00B0B3;
+	font-family:'TypSansMono Medium';
+	font-size:20px;
+	font-weight:bolder;
+
+}
+
+input::-webkit-slider-thumb{
+	-webkit-appearance:none; 
+	-moz-apperance:none; 
+	width:30px; 
+	height:30px;
+	-webkit-border-radius:30px; 
+	-moz-border-radius:30px; 
+	-ms-border-radius:30px; 
+	-o-border-radius:30px; 
+	border-radius:30px;
+	background: #00B0B3;
+}
+output{
+  color:#00B0B3;
+  font-family:'TypSansMono Medium';
+}
+
+	
+input.[type="text"]{
+    size: 2;
+
+}
+table{
+    margin-left:auto; 
+    margin-right:auto;
+}
+td{
+  text-align:left;
+}
+
+td.slider{
+  width:80%;
+}
+td.value1{
+  width:20px;
+}
+tr.motor{
+  height:40px;
+  margin-left:0px;
+}
+
+#val {
+	font-size: 3em;
+	font-family: sans-serif;
+	color: #00B0B3;
+}
+
+span.motor {
+	font-family: sans-serif;
+	font-size:20px;
+	font-weight:bolder;
+	color: #00B0B3;
+	margin: 0px;
+	text-align: left;
+}
+h2 {
+	font-family: sans-serif;
+	color: #00B0B3;
+	margin: 30px;
+}
+h1.titled-green, .jsn-bootstrap3 h1.titled-green{
+  color:#2D969D;
+  font-family:'TypSansMono Medium';
+  font-size:16px;
+  line-height:20px;
+  text-transform:uppercase;
+  background-color:transparent;
+  margin:0px;
+  padding:0px
+  
+}
+.titled-green{
+  color:#2D969D;
+  font-family:'TypSansMono Medium';
+  font-size:16px;
+  text-transform:uppercase
+  }
+.titled-white{
+  color:#fff;
+  font-family:'TypSansMono Medium';
+  font-size:16px;
+  text-transform:uppercase
+}
