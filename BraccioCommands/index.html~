@@ -22,7 +22,7 @@
 	   	function sendCommand(command) {		  	
 		    //bind the slider value to the URL
 		    var host="http://linino.local/arduino/";
-		    if(window.location.href.indexOf("192.168.240.1")==-1)
+		    if(window.location.href.indexOf("192.168.240.1")!=-1)
 		    	var host="/arduino/";
 		    	
 		    $.get(host + command, function(data){

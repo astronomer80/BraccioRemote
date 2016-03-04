@@ -9,7 +9,7 @@
 			$.ajaxSetup({
 				user:"root",
 				password:"doghunter", 
-				//crossDomain : true,
+				crossDomain : true,
 				xhrFields: { withCredentials: true } 
 			});
 
@@ -18,7 +18,8 @@
 		/*
 		Javascript function to send REST commands to your Arduino Board.
 		*/
-	   	function sendVal(pin, value) {		  	
+	   	function sendVal(pin, me) {	
+		    value = me.value;	  	
 		    //bind the slider value to the URL
 		    var host="http://linino.local/arduino/";
 		    if(window.location.href.indexOf("192.168.240.1")!=-1)
@@ -40,7 +41,7 @@
 		    else if(pin=="WRISTV"){
 		      $.get(host + 'wristv/value:' + value, function(){});
 		    }
-		    else if(pin=="TONGUE"){
+		    else if(pin=="GRIPPER"){
 		      $.get(host + 'tongue/value:' + value, function(){});
 		    }
 	  	}
@@ -102,8 +103,8 @@
 		</tr>	
 			
 		<tr class=motor>
-		<td><span class="motor">TONGUE</span></td>			
-		<td><input name=rangeInput6 type="range" min="10" max="67" value=10 onchange="updateVal('TONGUE', this);">
+		<td><span class="motor">GRIPPER</span></td>			
+		<td><input name=rangeInput6 type="range" min="10" max="67" value=10 onchange="updateVal('GRIPPER', this);">
 		<td><output type=text size=2 name="amount6" >10</output></td>
 		</tr>
 	    </table>		
