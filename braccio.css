@@ -1,9 +1,94 @@
+@font-face {
+  font-family: 'TypSansMono Medium';
+  src: url('http://www.arduino.org/fonts/TypSansMono-Medium.eot'); /* per IE 5-8 */
+  src: local('☺'), /* direttiva local per IE */
+  url('http://www.arduino.org/fonts/TypSansMono-Medium.woff') format('woff'),    /* Firefox 3.6+, Chrome 5.0+, IE 9.0+ */
+  url('http://www.arduino.org/fonts/TypSansMono-Medium.ttf') format('truetype'); /* Opera, Safari */
+}
+
+@font-face {
+  font-family: 'TypSansMono Regular';
+  src: url('http://www.arduino.org/fonts/TypSansMono-Regular.eot'); /* per IE 5-8 */
+  src: local('☺'), /* direttiva local per IE */
+  url('http://www.arduino.org/fonts/TypSansMono-Regular.woff') format('woff'),    /* Firefox 3.6+, Chrome 5.0+, IE 9.0+ */
+  url('http://www.arduino.org/fonts/TypSansMono-Regular.ttf') format('truetype'); /* Opera, Safari */
+}
+
+@font-face {
+	font-family: 'Conv_TypSansMono-Light';
+	src: url('http://www.arduino.org/fonts/TypSansMono-Light.eot');
+	src: local('☺'), url('http://www.arduino.org/fonts/TypSansMono-Light.woff') format('woff'), 
+	url('http://www.arduino.org/fonts/TypSansMono-Light.ttf') format('truetype'), 
+	url('http://www.arduino.org/fonts/TypSansMono-Light.svg') format('svg');
+}
+
+
+@font-face {
+  font-family: 'TyponineSans Medium';
+  src: url('http://www.arduino.org/fonts/TyponineSans-Medium.eot'); /* per IE 5-8 */
+  src: local('☺'), /* direttiva local per IE */
+  url('http://www.arduino.org/fonts/TyponineSans-Medium.woff') format('woff'),    /* Firefox 3.6+, Chrome 5.0+, IE 9.0+ */
+  url('http://www.arduino.org/fonts/TyponineSans-Medium.ttf') format('truetype'); /* Opera, Safari */
+}
+
+@font-face {
+  font-family: 'TyponineSans Regular';
+  src: url('http://www.arduino.org/fonts/TyponineSans-Regular.eot'); /* per IE 5-8 */
+  src: local('☺'), /* direttiva local per IE */
+  url('http://www.arduino.org/fonts/TyponineSans-Regular.woff') format('woff'),    /* Firefox 3.6+, Chrome 5.0+, IE 9.0+ */
+  url('http://www.arduino.org/fonts/TyponineSans-Regular.ttf') format('truetype'); /* Opera, Safari */
+}
+
+@font-face {
+  font-family: 'TyponineSans Light';
+  src: url('http://www.arduino.org/fonts/TyponineSans-Light.eot'); /* per IE 5-8 */
+  src: local('☺'), /* direttiva local per IE */
+  url('http://www.arduino.org/fonts/TyponineSans-Light.woff') format('woff'),    /* Firefox 3.6+, Chrome 5.0+, IE 9.0+ */
+  url('http://www.arduino.org/fonts/TyponineSans-Light.ttf') format('truetype'); /* Opera, Safari */
+}
+
+
+
+
+
+.arduino_address{
+	top:0px;
+	margin-left:0px;
+}
+div.commands{
+	display:none;
+}
+div.motors{
+	
+}
 body {
-	text-align: center;
 	margin: 5px 10px;
-	color:#00B0B3;
-	font-family:'TypSansMono Medium';
+	color:#333;
+	font-family:'TyponineSans Regular';
+	font-size: 16px;
+    line-height: 1.375em;
 }	
+
+div.page_content{
+}
+.instructions{
+	display:none;
+}
+.showoniframe{
+	line-height: 1.8;
+}
+
+div#instructions.instructions {
+margin: 20px 20px;
+width: 80%;
+text-align: left;
+}
+
+
+
+.link:hover, .link:active{
+opacity: 0.6;
+}
 
 img{
   width:150px;
@@ -11,35 +96,56 @@ img{
 
 input[type="range"]{
 	outline: none;
-	-webkit-appearance:none; 
-	-moz-apperance:none; 
 	width:90%;
 	height: 20px;
+	-webkit-appearance:none; 
+	-moz-apperance:none; 
 	-webkit-border-radius:10px; 
 	-moz-border-radius:10px; 
 	-ms-border-radius:10px; 
 	-o-border-radius:10px;
 	background-color: #CCC;
+}
 
+.link{
+	font-family:'TyponineSans Regular';
+	background-color: #2D969D;
+    	padding: 6px;
+    	margin: 0 5px;
+  	font-size: 14px;
+	color:#FFFFFF;
+	cursor: pointer;
+	text-transform: uppercase;
+	text-decoration: none;
+	width:250px;
+	margin-top:5px;
+	height: 20px;
+	display: block;
 }
 
 button{
 	outline: none;
 	margin-top:10px;
-	-webkit-appearance:none; 
-	-moz-apperance:none; 
 	height: 60px;
 	width:250px;
+	/*
+	-webkit-appearance:none; 
+	-moz-apperance:none; 
 	-webkit-border-radius:10px; 
 	-moz-border-radius:10px; 
 	-ms-border-radius:10px; 
-	-o-border-radius:10px;
-	background-color: #CCC;
-	color:#00B0B3;
+	-o-border-radius:10px;*/
+	background-color: #2D969D;
+	color:#fff;
 	font-family:'TypSansMono Medium';
-	font-size:20px;
-	font-weight:bolder;
+	font-size:16px;
+	border-style: none;
+	cursor: pointer;
+}
 
+button:hover, button:active{
+	opacity: 0.6;
+	cursor: pointer;
 }
 
 input::-webkit-slider-thumb{
@@ -52,10 +158,10 @@ input::-webkit-slider-thumb{
 	-ms-border-radius:30px; 
 	-o-border-radius:30px; 
 	border-radius:30px;
-	background: #00B0B3;
+	background: #2D969D;
 }
 output{
-  color:#00B0B3;
+  color:#2D969D;
   font-family:'TypSansMono Medium';
 }
 
@@ -85,22 +191,23 @@ tr.motor{
 
 #val {
 	font-size: 3em;
-	font-family: sans-serif;
-	color: #00B0B3;
+	font-family:'TyponineSans Regular';
+	color: #2D969D;
 }
 
 span.motor {
-	font-family: sans-serif;
-	font-size:20px;
+	font-family:'TyponineSans Regular';
+	font-size:16px;
 	font-weight:bolder;
-	color: #00B0B3;
+	color: #2D969D;
 	margin: 0px;
 	text-align: left;
 }
 h2 {
-	font-family: sans-serif;
-	color: #00B0B3;
+	font-family:'TypSansMono Medium';
+	color: #2D969D;
 	margin: 30px;
+	font-size:20px;
 }
 h1.titled-green, .jsn-bootstrap3 h1.titled-green{
   color:#2D969D;
@@ -119,9 +226,17 @@ h1.titled-green, .jsn-bootstrap3 h1.titled-green{
   font-size:16px;
   text-transform:uppercase
   }
+  
 .titled-white{
   color:#fff;
   font-family:'TypSansMono Medium';
   font-size:16px;
   text-transform:uppercase
 }
+
+a{
+  color:#2D969D;
+  font-family:'TypSansMono Medium';
+  text-decoration: none;
+}
+

@@ -1,43 +1,123 @@
+	<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<!--<script type="text/javascript" src="zepto.min.js"></script>-->
+	<style>
+		input::-webkit-slider-thumb{
+			-webkit-appearance:none; 
+			-moz-apperance:none; 
+			width:30px; 
+			height:30px;
+			-webkit-border-radius:30px; 
+			-moz-border-radius:30px; 
+			-ms-border-radius:30px; 
+			-o-border-radius:30px; 
+			border-radius:30px;
+			background: #00B0B3;
+		}
+		input[type=range]::-webkit-slider-runnable-track {
+		    width: 300px;
+		    height: 5px;
+		    background: #ddd;
+		    border: none;
+		    border-radius: 3px;
+		}
+	</style>
+	<script src="jquery.min.js"></script>
 	<script type="text/javascript">
-	$(document).ready(function() {		
+	
+	
+	var host="192.168.1.148"
+	/**
+	A setup function for ajax commands
+	*/
+	function setup(){
 		$.ajaxSetup({
-			xhrFields: { withCredentials: true } 
+			crossDomain : true,
+			dataType: "jsonp", 
+			xhrFields: { withCredentials: true},
+			type: 'GET'
+		});
+	}
+	
+	function sendData1(data){
+		setup();		
+		$.get("http://"+host+"/arduino/" + data, function(){
+		});
+		
+	}
+
+	function sendData(data){
+	    $.ajax({
+			crossDomain : true,
+			dataType: "jsonp", 
+			jsonp : "myfunction",
+			xhrFields: { withCredentials: true}	,
+			type: 'GET',			
+			url: "http://"+host+"/arduino/" + data
+		
+		});
+
+		function myfunction(){
+			alert("TY");
+		}
+	}
+	$(document).ready(function() {	
+		$('.braccioCommand').click(function(){
+		    var command = $(this).attr('id');
+		    alert(command);   
+		});	
+
+		$('.motorValue').change(function(){
+		    var value = $(this).val();
+		    var id = $(this).attr('id');
+		    //Show the value
+		    $('#'+id+'-output').text(value);
+		    //alert((id +'/value:' + value));
 		});
 
 	});
 
-	function sendData1(data){
-	    $.ajax({
-		type: 'GET',
-		username: 'root',
-	    	password: 'doghunter',
-		xhrFields: {
-			withCredentials: true
-		},   		
-		url: "http://linino.local/arduino/" + data	,
-		success: function(result){
-        		alert(result);
-    		}/*,
-		error: function(result){
-        		alert("Test");
-    		}*/
-	    });
+	function SaveToDisk() {
+		fileURL="test1.html";
+		fileName="test1.html";
+	    // for non-IE
+	    if (!window.ActiveXObject) {
+		var save = document.createElement('a');
+		save.href = fileURL;
+		save.target = '_blank';
+		save.download = fileName || 'unknown';
+
+		var event = document.createEvent('Event');
+		event.initEvent('click', true, true);
+		save.dispatchEvent(event);
+		(window.URL || window.webkitURL).revokeObjectURL(save.href);
+	    }
+
+	    // for IE
+	    else if ( !! window.ActiveXObject && document.execCommand)     {
+		var _window = window.open(fileURL, '_blank');
+		_window.document.close();
+		_window.document.execCommand('SaveAs', true, fileName || fileURL)
+		_window.close();
+	    }
 	}
 
-	function sendData(data){
-	    var host="http://linino.local/arduino/";
-	    $.get(host + data, function(){});	    
-	}
+	
+	
 	</script>
 </head>
 <body>
 <button onclick="sendData('ledon');">ON</button>
 <button onclick="sendData('ledoff');">OFF</button>
+
+<button class="braccioCommand" id='ledon'>ALT ON</button>
+<button class="braccioCommand" id='ledoff'>ALT OFF</button>
+
+<input class="motorValue" id="tongue" type="range" min="10" max="67" value=10>
+<output id="tongue-output" type=text size=2 >10</output>
+
+<a href="javascript:SaveToDisk()">Save This Page </a>
+
 </body>
 </html>
